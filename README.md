@@ -147,5 +147,4 @@ npm publish        # publishes to npm
 ---
 
 ## License
-
-MIT
+MIT © Kenneth Jhun N. Balino
