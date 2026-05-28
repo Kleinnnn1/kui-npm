@@ -24,7 +24,6 @@ type AvatarGroupProps = {
   className?: string;
 };
 
-// Icon fallback sizes
 const iconSizes: Record<AvatarSize, number> = {
   xs: 12,
   sm: 14,
@@ -46,7 +45,6 @@ export const Avatar = ({
 
   return (
     <div className={cn(avatarVariants({ size }), className)}>
-      {/* Image */}
       {showImage && (
         <img
           src={src}
@@ -55,29 +53,22 @@ export const Avatar = ({
           onError={() => setImgError(true)}
         />
       )}
-
-      {/* Fallback initials */}
       {!showImage && fallback && (
         <span className="uppercase tracking-wide select-none">
           {fallback.slice(0, 2)}
         </span>
       )}
-
-      {/* Icon fallback */}
       {!showImage && !fallback && (
         <User
           size={iconSizes[size as AvatarSize] ?? 18}
-          className="text-gray-500"
+          className="text-foreground-subtle"
         />
       )}
-
-      {/* Status dot */}
       {status && <span className={cn(statusVariants({ status, size }))} />}
     </div>
   );
 };
 
-// Avatar Group
 export const AvatarGroup = ({
   children,
   max,
@@ -85,7 +76,6 @@ export const AvatarGroup = ({
   className,
 }: AvatarGroupProps) => {
   const childArray = Array.isArray(children) ? children : [children];
-
   const visible = max ? childArray.slice(0, max) : childArray;
   const overflow = max ? childArray.length - max : 0;
 
@@ -94,19 +84,17 @@ export const AvatarGroup = ({
       {visible.map((child, i) => (
         <div
           key={i}
-          className="ring-2 ring-black rounded-full"
+          className="ring-2 ring-background rounded-full"
           style={{ marginLeft: i === 0 ? 0 : "-8px", zIndex: i }}
         >
           {child}
         </div>
       ))}
-
-      {/* Overflow count */}
       {overflow > 0 && (
         <div
           className={cn(
             avatarVariants({ size }),
-            "ring-2 ring-black bg-white/10 text-gray-400 text-xs",
+            "ring-2 ring-background bg-background-muted text-foreground-muted text-xs",
           )}
           style={{ marginLeft: "-8px", zIndex: visible.length }}
         >

@@ -17,12 +17,22 @@ export type ToastItem = {
 
 const icons: Record<ToastVariant, React.ReactNode> = {
   default: null,
-  success: <CheckCircle size={16} className="text-green-400 shrink-0 mt-0.5" />,
-  error: <AlertCircle size={16} className="text-red-400 shrink-0 mt-0.5" />,
-  warning: (
-    <AlertTriangle size={16} className="text-yellow-400 shrink-0 mt-0.5" />
+  success: (
+    <CheckCircle
+      size={16}
+      className="text-success-foreground shrink-0 mt-0.5"
+    />
   ),
-  info: <Info size={16} className="text-blue-400 shrink-0 mt-0.5" />,
+  error: (
+    <AlertCircle size={16} className="text-danger-foreground shrink-0 mt-0.5" />
+  ),
+  warning: (
+    <AlertTriangle
+      size={16}
+      className="text-warning-foreground shrink-0 mt-0.5"
+    />
+  ),
+  info: <Info size={16} className="text-primary shrink-0 mt-0.5" />,
 };
 
 type ToastProps = VariantProps<typeof toastVariants> & {
@@ -57,8 +67,7 @@ export const Toast = ({ toast, onRemove }: ToastProps) => {
     >
       {icons[toast.variant]}
 
-      {/* Message */}
-      <p className="flex-1 text-sm text-gray-200 leading-relaxed">
+      <p className="flex-1 text-sm text-foreground leading-relaxed">
         {toast.message}
       </p>
 
@@ -67,7 +76,7 @@ export const Toast = ({ toast, onRemove }: ToastProps) => {
           setVisible(false);
           setTimeout(() => onRemove(toast.id), 300);
         }}
-        className="text-gray-600 hover:text-white transition-colors duration-200 shrink-0 mt-0.5"
+        className="text-foreground-subtle hover:text-foreground transition-colors duration-200 shrink-0 mt-0.5"
       >
         <X size={14} />
       </button>

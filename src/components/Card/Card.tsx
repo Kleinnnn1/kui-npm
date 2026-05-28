@@ -42,7 +42,7 @@ export const CardTitle = ({
   className?: string;
 }) => (
   <h3
-    className={cn("text-white font-semibold text-lg leading-snug", className)}
+    className={cn("text-foreground font-semibold text-lg leading-snug", className)}
   >
     {children}
   </h3>
@@ -55,7 +55,7 @@ export const CardDescription = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <p className={cn("text-gray-500 text-sm leading-relaxed", className)}>
+  <p className={cn("text-foreground-muted text-sm leading-relaxed", className)}>
     {children}
   </p>
 );
@@ -66,7 +66,9 @@ export const CardContent = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => <div className={cn("text-gray-400 text-sm", className)}>{children}</div>;
+}) => (
+  <div className={cn("text-foreground-muted text-sm", className)}>{children}</div>
+);
 
 export const CardFooter = ({
   children,

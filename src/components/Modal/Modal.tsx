@@ -91,7 +91,7 @@ export const ModalHeader = ({
 }: ModalHeaderProps) => (
   <div
     className={cn(
-      "flex items-start justify-between px-6 py-4 border-b border-white/10",
+      "flex items-start justify-between px-6 py-4 border-b border-border",
       className,
     )}
   >
@@ -99,7 +99,7 @@ export const ModalHeader = ({
     {onClose && (
       <button
         onClick={onClose}
-        className="text-gray-600 hover:text-white transition-colors duration-200 mt-0.5 shrink-0"
+        className="text-foreground-subtle hover:text-foreground transition-colors duration-200 mt-0.5 shrink-0"
       >
         <X size={16} />
       </button>
@@ -109,7 +109,10 @@ export const ModalHeader = ({
 
 export const ModalTitle = ({ children, className }: ModalSectionProps) => (
   <h2
-    className={cn("text-white font-semibold text-lg leading-snug", className)}
+    className={cn(
+      "text-foreground font-semibold text-lg leading-snug",
+      className,
+    )}
   >
     {children}
   </h2>
@@ -119,14 +122,17 @@ export const ModalDescription = ({
   children,
   className,
 }: ModalSectionProps) => (
-  <p className={cn("text-gray-500 text-sm leading-relaxed", className)}>
+  <p className={cn("text-foreground-muted text-sm leading-relaxed", className)}>
     {children}
   </p>
 );
 
 export const ModalContent = ({ children, className }: ModalSectionProps) => (
   <div
-    className={cn("px-6 py-5 text-gray-400 text-sm leading-relaxed", className)}
+    className={cn(
+      "px-6 py-5 text-foreground-muted text-sm leading-relaxed",
+      className,
+    )}
   >
     {children}
   </div>
@@ -135,7 +141,7 @@ export const ModalContent = ({ children, className }: ModalSectionProps) => (
 export const ModalFooter = ({ children, className }: ModalSectionProps) => (
   <div
     className={cn(
-      "flex items-center justify-end gap-3 px-6 py-4 border-t border-white/10",
+      "flex items-center justify-end gap-3 px-6 py-4 border-t border-border",
       className,
     )}
   >

@@ -147,7 +147,7 @@ export const DropdownItem = ({
 };
 
 export const DropdownSeparator = ({ className }: { className?: string }) => (
-  <div className={cn("my-1 h-px bg-white/10", className)} />
+  <div className={cn("my-1 h-px bg-border", className)} />
 );
 
 export const DropdownLabel = ({
@@ -159,7 +159,7 @@ export const DropdownLabel = ({
 }) => (
   <div
     className={cn(
-      "px-3 py-1.5 text-xs text-gray-600 tracking-widest uppercase",
+      "px-3 py-1.5 text-xs text-foreground-subtle tracking-widests uppercase",
       className,
     )}
   >

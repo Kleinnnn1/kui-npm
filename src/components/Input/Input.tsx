@@ -26,16 +26,16 @@ export const Input = ({
 }: InputProps) => (
   <div className="flex flex-col gap-1.5 w-full">
     {label && (
-      <label className="text-xs text-gray-400 tracking-widest uppercase font-medium">
+      <label className="text-xs text-foreground-muted tracking-widests uppercase font-medium">
         {label}
       </label>
     )}
-
     <div className="relative flex items-center">
       {leftIcon && (
-        <span className="absolute left-3 text-gray-500">{leftIcon}</span>
+        <span className="absolute left-3 text-foreground-subtle">
+          {leftIcon}
+        </span>
       )}
-
       <input
         {...props}
         className={cn(
@@ -45,16 +45,16 @@ export const Input = ({
           className,
         )}
       />
-
       {rightIcon && (
-        <span className="absolute right-3 text-gray-500">{rightIcon}</span>
+        <span className="absolute right-3 text-foreground-subtle">
+          {rightIcon}
+        </span>
       )}
     </div>
-
     {error ? (
-      <p className="text-xs text-red-400 tracking-wide">{error}</p>
+      <p className="text-xs text-danger-foreground tracking-wide">{error}</p>
     ) : hint ? (
-      <p className="text-xs text-gray-600 tracking-wide">{hint}</p>
+      <p className="text-xs text-foreground-subtle tracking-wide">{hint}</p>
     ) : null}
   </div>
 );
