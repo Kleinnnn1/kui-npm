@@ -1,15 +1,15 @@
 import { cva } from "class-variance-authority";
 
 export const inputVariants = cva(
-  "w-full rounded font-medium text-sm text-white placeholder:text-gray-400 bg-white/5 border transition-all duration-200 outline-none focus:ring-1 disabled:opacity-100 disabled:bg-white/[0.02] disabled:text-gray-600 disabled:border-white/5 disabled:placeholder:text-gray-700 disabled:cursor-not-allowed disabled:pointer-events-none",
+  "w-full rounded font-medium text-sm text-foreground placeholder:text-foreground-subtle bg-background-muted border transition-all duration-200 outline-none focus:ring-1 disabled:opacity-100 disabled:bg-background/50 disabled:text-foreground-subtle disabled:border-border disabled:placeholder:text-foreground-subtle/50 disabled:cursor-not-allowed disabled:pointer-events-none",
   {
     variants: {
       variant: {
-        default: "border-white/10 focus:border-white/30 focus:ring-white/10",
+        default: "border-border focus:border-border-strong focus:ring-ring",
         error:
-          "border-red-500/50 focus:border-red-500/70 focus:ring-red-500/20 text-red-400 placeholder:text-red-400/50",
+          "border-danger/50 focus:border-danger/70 focus:ring-danger/20 text-danger-foreground placeholder:text-danger-foreground/50",
         success:
-          "border-green-500/50 focus:border-green-500/70 focus:ring-green-500/20",
+          "border-success/50 focus:border-success/70 focus:ring-success/20",
       },
       size: {
         sm: "px-3 py-1.5 text-xs",

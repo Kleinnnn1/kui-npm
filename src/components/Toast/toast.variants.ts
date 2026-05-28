@@ -5,11 +5,11 @@ export const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-black/80 border-white/10 text-white",
-        success: "bg-black/80 border-green-500/30 text-white",
-        error: "bg-black/80 border-red-500/30 text-white",
-        warning: "bg-black/80 border-yellow-500/30 text-white",
-        info: "bg-black/80 border-blue-500/30 text-white",
+        default: "bg-background/80 border-border text-foreground",
+        success: "bg-background/80 border-success/30 text-foreground",
+        error: "bg-background/80 border-danger/30 text-foreground",
+        warning: "bg-background/80 border-warning/30 text-foreground",
+        info: "bg-background/80 border-primary/30 text-foreground",
       },
     },
     defaultVariants: {

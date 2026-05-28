@@ -1,0 +1,32 @@
+/* src/styles/tokens.css */
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-background-subtle: hsl(var(--background-subtle));
+  --color-background-muted: hsl(var(--background-muted));
+
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-muted: hsl(var(--foreground-muted));
+  --color-foreground-subtle: hsl(var(--foreground-subtle));
+
+  --color-border: hsl(var(--border));
+  --color-border-strong: hsl(var(--border-strong));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-success-muted: hsl(var(--success-muted));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-warning-muted: hsl(var(--warning-muted));
+
+  --color-danger: hsl(var(--danger));
+  --color-danger-foreground: hsl(var(--danger-foreground));
+  --color-danger-muted: hsl(var(--danger-muted));
+
+  --color-ring: hsl(var(--ring));
+}

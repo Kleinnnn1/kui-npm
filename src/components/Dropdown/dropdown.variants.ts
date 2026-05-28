@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const dropdownMenuVariants = cva(
-  "absolute z-50 min-w-[160px] rounded-md border border-white/10 bg-black/90 backdrop-blur-md shadow-xl p-1 transition-all duration-200",
+  "absolute z-50 min-w-[160px] rounded-md border border-border bg-background/90 backdrop-blur-md shadow-xl p-1 transition-all duration-200",
   {
     variants: {
       align: {
@@ -26,9 +26,12 @@ export const dropdownItemVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-gray-400 hover:text-white hover:bg-white/5",
-        danger: "text-red-400 hover:text-red-300 hover:bg-red-500/10",
-        disabled: "text-gray-600 pointer-events-none cursor-not-allowed",
+        default:
+          "text-foreground-muted hover:text-foreground hover:bg-background-muted",
+        danger:
+          "text-danger-foreground hover:text-danger-foreground/80 hover:bg-danger-muted",
+        disabled:
+          "text-foreground-subtle pointer-events-none cursor-not-allowed",
       },
     },
     defaultVariants: {

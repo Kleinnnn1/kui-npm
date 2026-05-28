@@ -1,13 +1,13 @@
 import { cva } from "class-variance-authority";
 
 export const tabsListVariants = cva(
-  "flex items-center gap-1 rounded-md border border-white/10 bg-white/5 p-1 overflow-x-auto scrollbar-none w-full",
+  "flex items-center gap-1 rounded-md border border-border bg-background-muted p-1 overflow-x-auto scrollbar-none w-full",
   {
     variants: {
       variant: {
-        default: "bg-white/5 border-white/10",
+        default: "bg-background-muted border-border",
         ghost: "bg-transparent border-transparent",
-        outline: "bg-transparent border-white/10",
+        outline: "bg-transparent border-border",
       },
     },
     defaultVariants: {
@@ -21,8 +21,10 @@ export const tabsTriggerVariants = cva(
   {
     variants: {
       state: {
-        active: "bg-white/10 text-white border border-white/15 shadow-sm",
-        inactive: "text-gray-500 hover:text-white hover:bg-white/5",
+        active:
+          "bg-background-subtle text-foreground border border-border-strong shadow-sm",
+        inactive:
+          "text-foreground-subtle hover:text-foreground hover:bg-background-muted",
       },
     },
     defaultVariants: {
@@ -32,7 +34,7 @@ export const tabsTriggerVariants = cva(
 );
 
 export const tabsContentVariants = cva(
-  "text-gray-400 text-sm leading-relaxed transition-all duration-200",
+  "text-foreground-muted text-sm leading-relaxed transition-all duration-200",
   {
     variants: {
       state: {

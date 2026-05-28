@@ -5,12 +5,12 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-white/10 text-white",
-        solid: "bg-white text-black",
-        success: "bg-green-500/20 text-green-400",
-        warning: "bg-yellow-500/20 text-yellow-400",
-        danger: "bg-red-500/20 text-red-400",
-        muted: "bg-white/10 text-gray-400",
+        default: "bg-background-muted text-foreground",
+        success: "bg-success-muted text-success-foreground",
+        warning: "bg-warning-muted text-warning-foreground",
+        danger: "bg-danger-muted text-danger-foreground",
+        muted: "bg-background-muted text-foreground-muted",
+        solid: "bg-primary text-primary-foreground",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",

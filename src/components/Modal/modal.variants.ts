@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const modalVariants = cva(
-  "relative bg-black/90 border border-white/10 rounded-md backdrop-blur-md shadow-2xl w-full transition-all duration-300",
+  "relative bg-background/90 border border-border rounded-md backdrop-blur-md shadow-2xl w-full transition-all duration-300",
   {
     variants: {
       size: {
