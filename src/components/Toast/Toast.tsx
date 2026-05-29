@@ -59,6 +59,9 @@ export const Toast = ({ toast, onRemove }: ToastProps) => {
 
   return (
     <div
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
       className={cn(
         toastVariants({ variant: toast.variant }),
         "transform transition-all duration-300",
