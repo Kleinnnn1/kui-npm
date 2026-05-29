@@ -8,7 +8,10 @@ type BadgeProps = VariantProps<typeof badgeVariants> & {
 };
 
 export const Badge = ({ variant, size, children, className }: BadgeProps) => (
-  <span className={cn(badgeVariants({ variant, size }), className)}>
+  <span
+    role="status"
+    className={cn(badgeVariants({ variant, size }), className)}
+  >
     {children}
   </span>
 );

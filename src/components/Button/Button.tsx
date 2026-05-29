@@ -23,6 +23,7 @@ export const Button = ({
     type={type}
     onClick={onClick}
     disabled={disabled}
+    aria-disabled={disabled}
     className={cn(buttonVariants({ variant, size }), className)}
   >
     {children}

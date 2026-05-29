@@ -1,6 +1,6 @@
 {
   "name": "@kennbalino/kui",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "A minimal, dark-first React component library built with Tailwind CSS and CVA.",
   "keywords": [
     "react",

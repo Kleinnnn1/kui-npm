@@ -1,7 +1,6 @@
-// src/kui/Modal/Modal.tsx
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { type VariantProps } from "class-variance-authority";
@@ -14,6 +13,7 @@ type ModalProps = VariantProps<typeof modalVariants> & {
   children: React.ReactNode;
   className?: string;
   closeOnBackdrop?: boolean;
+  titleId?: string;
 };
 
 type ModalHeaderProps = {
@@ -34,10 +34,37 @@ export const Modal = ({
   children,
   className,
   closeOnBackdrop = true,
+  titleId = "modal-title",
 }: ModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      // Focus trap
+      if (e.key === "Tab" && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last?.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first?.focus();
+          }
+        }
+      }
     },
     [onClose],
   );
@@ -46,7 +73,16 @@ export const Modal = ({
     if (open) {
       document.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
+
+      // Move focus into modal on open
+      setTimeout(() => {
+        const focusable = modalRef.current?.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        focusable?.[0]?.focus();
+      }, 50);
     }
+
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
@@ -54,7 +90,6 @@ export const Modal = ({
   }, [open, handleKeyDown]);
 
   if (!open) return null;
-
   if (typeof window === "undefined") return null;
 
   return createPortal(
@@ -63,6 +98,9 @@ export const Modal = ({
         "fixed inset-0 z-9998 flex items-center justify-center p-4",
         "animate-in fade-in duration-200",
       )}
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby={titleId}
     >
       {/* Backdrop */}
       <div
@@ -71,6 +109,7 @@ export const Modal = ({
       />
 
       <div
+        ref={modalRef}
         className={cn(
           modalVariants({ size }),
           "relative z-10 animate-in fade-in-0 zoom-in-95 duration-200",
@@ -99,6 +138,7 @@ export const ModalHeader = ({
     {onClose && (
       <button
         onClick={onClose}
+        aria-label="Close modal"
         className="text-foreground-subtle hover:text-foreground transition-colors duration-200 mt-0.5 shrink-0"
       >
         <X size={16} />
@@ -109,6 +149,7 @@ export const ModalHeader = ({
 
 export const ModalTitle = ({ children, className }: ModalSectionProps) => (
   <h2
+    id="modal-title"
     className={cn(
       "text-foreground font-semibold text-lg leading-snug",
       className,

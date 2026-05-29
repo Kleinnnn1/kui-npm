@@ -1,5 +1,5 @@
 import { type VariantProps } from "class-variance-authority";
-import { type InputHTMLAttributes } from "react";
+import { type InputHTMLAttributes, useId } from "react";
 import { inputVariants } from "./input.variants";
 import { cn } from "../../utils";
 
@@ -22,39 +22,56 @@ export const Input = ({
   leftIcon,
   rightIcon,
   className,
+  id: idProp,
   ...props
-}: InputProps) => (
-  <div className="flex flex-col gap-1.5 w-full">
-    {label && (
-      <label className="text-xs text-foreground-muted tracking-widests uppercase font-medium">
-        {label}
-      </label>
-    )}
-    <div className="relative flex items-center">
-      {leftIcon && (
-        <span className="absolute left-3 text-foreground-subtle">
-          {leftIcon}
-        </span>
+}: InputProps) => {
+  const generatedId = useId();
+  const id = idProp ?? generatedId;
+  const descId = error || hint ? `${id}-desc` : undefined;
+
+  return (
+    <div className="flex flex-col gap-1.5 w-full">
+      {label && (
+        <label
+          htmlFor={id}
+          className="text-xs text-foreground-muted tracking-widests uppercase font-medium"
+        >
+          {label}
+        </label>
       )}
-      <input
-        {...props}
-        className={cn(
-          inputVariants({ variant: error ? "error" : variant, size }),
-          leftIcon && "pl-9",
-          rightIcon && "pr-9",
-          className,
+      <div className="relative flex items-center">
+        {leftIcon && (
+          <span className="absolute left-3 text-foreground-subtle">
+            {leftIcon}
+          </span>
         )}
-      />
-      {rightIcon && (
-        <span className="absolute right-3 text-foreground-subtle">
-          {rightIcon}
-        </span>
-      )}
+        <input
+          {...props}
+          id={id}
+          aria-describedby={descId}
+          aria-invalid={!!error}
+          className={cn(
+            inputVariants({ variant: error ? "error" : variant, size }),
+            leftIcon && "pl-9",
+            rightIcon && "pr-9",
+            className,
+          )}
+        />
+        {rightIcon && (
+          <span className="absolute right-3 text-foreground-subtle">
+            {rightIcon}
+          </span>
+        )}
+      </div>
+      {error ? (
+        <p id={descId} className="text-xs text-danger-foreground tracking-wide">
+          {error}
+        </p>
+      ) : hint ? (
+        <p id={descId} className="text-xs text-foreground-subtle tracking-wide">
+          {hint}
+        </p>
+      ) : null}
     </div>
-    {error ? (
-      <p className="text-xs text-danger-foreground tracking-wide">{error}</p>
-    ) : hint ? (
-      <p className="text-xs text-foreground-subtle tracking-wide">{hint}</p>
-    ) : null}
-  </div>
-);
+  );
+};
